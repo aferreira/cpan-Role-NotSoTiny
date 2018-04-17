@@ -6,7 +6,10 @@ use Test::More;
 use Role::NotSoTiny ();
 
 Role::NotSoTiny->make_role('Foo');
-*Foo::foo = sub { 42 };
+{
+  no warnings 'once';
+  *Foo::foo = sub {42};
+}
 
 ok( Role::NotSoTiny->is_role('Foo'), 'Foo is_role');
 
