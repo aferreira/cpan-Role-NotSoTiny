@@ -4,11 +4,11 @@ use Test::More;
 
 {
   package R1;
-  use Role::Tiny;
+  use Role::NotSoTiny;
 }
 {
   package R2;
-  use Role::Tiny;
+  use Role::NotSoTiny;
 }
 {
   package C1;

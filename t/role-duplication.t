@@ -3,11 +3,11 @@ use warnings;
 use Test::More;
 
 {
-  package Role1; use Role::Tiny;
+  package Role1; use Role::NotSoTiny;
   sub foo1 { 1 }
 }
 {
-  package Role2; use Role::Tiny;
+  package Role2; use Role::NotSoTiny;
   sub foo2 { 2 }
 }
 {
@@ -16,7 +16,7 @@ use Test::More;
 }
 
 eval {
-  Role::Tiny->create_class_with_roles(
+  Role::NotSoTiny->create_class_with_roles(
     'BaseClass',
     qw(Role2 Role1 Role1 Role2 Role2),
   );

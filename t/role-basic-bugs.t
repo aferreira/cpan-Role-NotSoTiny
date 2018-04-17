@@ -5,23 +5,23 @@ use Test::More;
 # multiple roles with the same role
 {
     package RoleC;
-    use Role::Tiny;
+    use Role::NotSoTiny;
     sub baz { 'baz' }
 
     package RoleB;
-    use Role::Tiny;
+    use Role::NotSoTiny;
     with 'RoleC';
     sub bar { 'bar' }
 
     package RoleA;
-    use Role::Tiny;
+    use Role::NotSoTiny;
     with 'RoleC';
     sub foo { 'foo' }
 
     package Foo;
     use strict;
     use warnings;
-    use Role::Tiny 'with';
+    use Role::NotSoTiny 'with';
     eval {
         with 'RoleA', 'RoleB';
         1;
@@ -43,7 +43,7 @@ use Test::More;
     local *UNIVERSAL::can = sub { 1 };
     eval <<'    END';
     package Can::Can;
-    use Role::Tiny 'with';
+    use Role::NotSoTiny 'with';
     with 'A::NonExistent::Role';
     END
 }
@@ -57,10 +57,10 @@ use Test::More;
 
 {
     package Role1;
-    use Role::Tiny;
+    use Role::NotSoTiny;
 
     package Role2;
-    use Role::Tiny;
+    use Role::NotSoTiny;
 
     package Frew;
     use strict;
@@ -72,10 +72,10 @@ use Test::More;
     ::ok(!Role::Tiny::does_role($object, 'Role1'), 'no Role1 yet');
     ::ok(!Role::Tiny::does_role($object, 'Role2'), 'no Role2 yet');
 
-    Role::Tiny->apply_roles_to_object($object, 'Role1');
+    Role::NotSoTiny->apply_roles_to_object($object, 'Role1');
     ::ok(Role::Tiny::does_role($object, "Role1"), 'Role1 consumed');
     ::ok(!Role::Tiny::does_role($object, 'Role2'), 'no Role2 yet');
-    Role::Tiny->apply_roles_to_object($object, 'Role2');
+    Role::NotSoTiny->apply_roles_to_object($object, 'Role2');
     ::ok(Role::Tiny::does_role($object, "Role1"), 'Role1 consumed');
     ::ok(Role::Tiny::does_role($object, 'Role2'), 'Role2 consumed');
 }
@@ -91,11 +91,11 @@ BEGIN {
     package Baz;
     $INC{'Baz.pm'} = __FILE__;
 
-    use Role::Tiny;
+    use Role::NotSoTiny;
 
     sub baz { 1 }
 }
 
-can_ok(Role::Tiny->create_class_with_roles(qw(Bar Baz))->new, qw(bar baz));
+can_ok(Role::NotSoTiny->create_class_with_roles(qw(Bar Baz))->new, qw(bar baz));
 
 done_testing;

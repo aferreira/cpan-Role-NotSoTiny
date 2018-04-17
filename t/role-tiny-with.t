@@ -5,7 +5,7 @@ use Test::More;
 BEGIN {
   package MyRole;
 
-  use Role::Tiny;
+  use Role::NotSoTiny;
 
   sub bar { 'role bar' }
 
@@ -32,7 +32,7 @@ is(MyClass->baz, 'class baz', 'method from class');
 BEGIN {
   package RoleWithStub;
 
-  use Role::Tiny;
+  use Role::NotSoTiny;
 
   sub foo { 'role foo' }
 

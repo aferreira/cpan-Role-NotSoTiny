@@ -6,7 +6,7 @@ BEGIN {
     package My::Does::Basic;
     $INC{'My/Does/Basic.pm'} = 1;
 
-    use Role::Tiny;
+    use Role::NotSoTiny;
 
     requires 'turbo_charger';
 
@@ -19,7 +19,7 @@ BEGIN {
     package My::Example;
     $INC{'My/Example.pm'} = 1;
 
-    use Role::Tiny 'with';
+    use Role::NotSoTiny 'with';
 
     with 'My::Does::Basic';
 

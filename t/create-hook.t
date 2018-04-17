@@ -2,23 +2,23 @@ use strict;
 use warnings;
 use Test::More;
 
-use Role::Tiny ();
+use Role::NotSoTiny ();
 
 my $last_role;
-push @Role::Tiny::ON_ROLE_CREATE, sub {
+push @Role::NotSoTiny::ON_ROLE_CREATE, sub {
   ($last_role) = @_;
 };
 
 eval q{
   package MyRole;
-  use Role::Tiny;
+  use Role::NotSoTiny;
 };
 
 is $last_role, 'MyRole', 'role create hook was run';
 
 eval q{
   package MyRole2;
-  use Role::Tiny;
+  use Role::NotSoTiny;
 };
 
 is $last_role, 'MyRole2', 'role create hook was run again';

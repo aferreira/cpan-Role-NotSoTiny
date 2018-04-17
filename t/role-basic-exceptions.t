@@ -1,12 +1,12 @@
 use strict;
 use warnings;
 use Test::More;
-require Role::Tiny;
+require Role::NotSoTiny;
 
 {
     package My::Does::Basic;
 
-    use Role::Tiny;
+    use Role::NotSoTiny;
 
     requires 'turbo_charger';
 
@@ -27,7 +27,7 @@ qr/missing turbo_charger/,
 {
     {
         package My::Conflict;
-        use Role::Tiny;
+        use Role::NotSoTiny;
         sub conflict {};
     }
     eval <<'    END_PACKAGE';
@@ -45,13 +45,13 @@ qr/missing turbo_charger/,
 {
     {
         package Role1;
-        use Role::Tiny;
+        use Role::NotSoTiny;
         requires 'missing_method';
         sub method1 { 'method1' }
     }
     {
         package Role2;
-        use Role::Tiny;
+        use Role::NotSoTiny;
         with 'Role1';
         sub method2 { 'method2' }
     }
@@ -67,7 +67,7 @@ qr/missing turbo_charger/,
 {
     {
         package Role3;
-        use Role::Tiny;
+        use Role::NotSoTiny;
         requires qw(this that);
     }
     eval <<"    END";

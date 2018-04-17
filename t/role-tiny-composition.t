@@ -4,7 +4,7 @@ use Test::More;
 
 {
   package R1;
-  use Role::Tiny;
+  use Role::NotSoTiny;
 
   sub foo {}
 
@@ -13,7 +13,7 @@ use Test::More;
 
 {
   package R2;
-  use Role::Tiny;
+  use Role::NotSoTiny;
 
   sub foo {}
 
@@ -27,7 +27,7 @@ use Test::More;
   }
 }
 
-eval { Role::Tiny->apply_roles_to_object(X->new, "R1", "R2") };
+eval { Role::NotSoTiny->apply_roles_to_object(X->new, "R1", "R2") };
 like $@,
   qr/^Method name conflict for 'foo' between roles 'R1' and 'R2', cannot apply these simultaneously to an object/,
   'apply conflicting roles to object';

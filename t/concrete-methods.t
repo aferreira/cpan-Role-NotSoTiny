@@ -7,7 +7,7 @@ use Test::More;
 
   sub before_role {}
 
-  use Role::Tiny;
+  use Role::NotSoTiny;
   no warnings 'once';
 
   our $GLOBAL1 = 1;
@@ -22,19 +22,19 @@ use Test::More;
   sub method {}
 }
 
-my $role_methods = Role::Tiny->_concrete_methods_of('MyRole1');
+my $role_methods = Role::NotSoTiny->_concrete_methods_of('MyRole1');
 is_deeply([sort keys %$role_methods], ['after_role'],
-  'only subs after Role::Tiny import are methods' );
+  'only subs after Role::NotSoTiny import are methods' );
 
-my @role_method_list = Role::Tiny->methods_provided_by('MyRole1');
+my @role_method_list = Role::NotSoTiny->methods_provided_by('MyRole1');
 is_deeply(\@role_method_list, ['after_role'],
   'methods_provided_by gives method list' );
 
-my $class_methods = Role::Tiny->_concrete_methods_of('MyClass1');
+my $class_methods = Role::NotSoTiny->_concrete_methods_of('MyClass1');
 is_deeply([sort keys %$class_methods], ['method'],
   'only subs from non-Role::Tiny packages are methods' );
 
-eval { Role::Tiny->methods_provided_by('MyClass1') };
+eval { Role::NotSoTiny->methods_provided_by('MyClass1') };
 like $@,
   qr/is not a Role::Tiny/,
   'methods_provided_by refuses to work on classes';

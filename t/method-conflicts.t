@@ -5,13 +5,13 @@ use Test::More;
 
 {
     package Local::R1;
-    use Role::Tiny;
+    use Role::NotSoTiny;
     sub method { 1 };
 }
 
 {
     package Local::R2;
-    use Role::Tiny;
+    use Role::NotSoTiny;
     sub method { 2 };
 }
 

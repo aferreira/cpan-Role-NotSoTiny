@@ -4,7 +4,7 @@ use Test::More;
 
 BEGIN {
   package MyRole;
-  use Role::Tiny;
+  use Role::NotSoTiny;
 
   sub as_string { "welp" }
   sub as_num { 219 }
@@ -58,7 +58,7 @@ BEGIN {
 {
   my $orig = MyClass3->new;
   my $copy = $orig;
-  Role::Tiny->apply_roles_to_object($orig, 'MyRole');
+  Role::NotSoTiny->apply_roles_to_object($orig, 'MyRole');
   for my $o ($orig, $copy) {
     my $copied = \$o == \$copy ? ' copy' : '';
     local $TODO = 'magic not applied to all ref copies on perl < 5.8.9'
@@ -71,7 +71,7 @@ BEGIN {
 
 {
   my $o = MyClass3->new;
-  Role::Tiny->apply_roles_to_package('MyClass3', 'MyRole');
+  Role::NotSoTiny->apply_roles_to_package('MyClass3', 'MyRole');
   local $TODO = 'magic not applied to existing objects on perl < 5.18'
     if $] < 5.018;
   is "$o", 'welp', 'subref overload applied to class with instance';

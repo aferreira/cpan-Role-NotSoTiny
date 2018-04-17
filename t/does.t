@@ -4,12 +4,12 @@ use Test::More;
 
 BEGIN {
   package Local::Role1;
-  use Role::Tiny;
+  use Role::NotSoTiny;
 }
 
 BEGIN {
   package Local::Role2;
-  use Role::Tiny;
+  use Role::NotSoTiny;
 }
 
 BEGIN {
@@ -36,7 +36,7 @@ BEGIN {
   sub DOES {
     my ($proto, $role) = @_;
     return 1 if $role eq 'Local::Role3';
-    return $proto->Role::Tiny::does_role($role);
+    return $proto->Role::NotSoTiny::does_role($role);
   }
 }
 

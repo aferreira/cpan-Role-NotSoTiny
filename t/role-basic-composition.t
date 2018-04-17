@@ -1,12 +1,12 @@
 use strict;
 use warnings;
 use Test::More;
-require Role::Tiny;
+require Role::NotSoTiny;
 
 {
 
     package My::Does::Basic1;
-    use Role::Tiny;
+    use Role::NotSoTiny;
     requires 'turbo_charger';
 
     sub method {
@@ -16,7 +16,7 @@ require Role::Tiny;
 {
 
     package My::Does::Basic2;
-    use Role::Tiny;
+    use Role::NotSoTiny;
     requires 'turbo_charger';
 
     sub method2 {
@@ -39,7 +39,7 @@ ok !$@, 'We should be able to use two roles with the same requirements'
 {
 
     package My::Does::Basic3;
-    use Role::Tiny;
+    use Role::NotSoTiny;
     with 'My::Does::Basic2';
 
     sub method3 {
@@ -99,7 +99,7 @@ ok !$object->Role::Tiny::does_role('My::Does::Basic1'),
 {
     {
         package Role::Which::Imports;
-        use Role::Tiny;
+        use Role::NotSoTiny;
         use GenAccessors qw(this that);
     }
     {
@@ -120,12 +120,12 @@ ok !$object->Role::Tiny::does_role('My::Does::Basic1'),
 {
     {
         package Role::WithImportsOnceRemoved;
-        use Role::Tiny;
+        use Role::NotSoTiny;
         with 'Role::Which::Imports';
     }
     {
         package Class::With::ImportingRole2;
-        use Role::Tiny 'with';
+        use Role::NotSoTiny 'with';
 $ENV{DEBUG} = 1;
         with 'Role::WithImportsOnceRemoved';
         sub new { bless {} => shift }
@@ -143,14 +143,14 @@ $ENV{DEBUG} = 1;
 {
     {
         package Method::Role1;
-        use Role::Tiny;
+        use Role::NotSoTiny;
         sub method1 { }
         requires 'method2';
     }
 
     {
         package Method::Role2;
-        use Role::Tiny;
+        use Role::NotSoTiny;
         sub method2 { }
         requires 'method1';
     }
@@ -168,7 +168,7 @@ SKIP: {
     unless eval "use Class::Method::Modifiers 1.05; 1";
     {
         package Modifier::Role1;
-        use Role::Tiny;
+        use Role::NotSoTiny;
         sub foo {
         }
         before 'bar', sub {};
@@ -176,7 +176,7 @@ SKIP: {
 
     {
         package Modifier::Role2;
-        use Role::Tiny;
+        use Role::NotSoTiny;
         sub bar {
         }
         before 'foo', sub {};
@@ -193,20 +193,20 @@ SKIP: {
 {
     {
         package Base::Role;
-        use Role::Tiny;
+        use Role::NotSoTiny;
         requires qw/method1 method2/;
     }
 
     {
         package Sub::Role1;
-        use Role::Tiny;
+        use Role::NotSoTiny;
         with 'Base::Role';
         sub method1 {}
     }
 
     {
         package Sub::Role2;
-        use Role::Tiny;
+        use Role::NotSoTiny;
         with 'Base::Role';
         sub method2 {}
     }
@@ -223,7 +223,7 @@ SKIP: {
 {
     {
         package My::Does::Conflict;
-        use Role::Tiny;
+        use Role::NotSoTiny;
 
         sub method {
             return __PACKAGE__ . " method";

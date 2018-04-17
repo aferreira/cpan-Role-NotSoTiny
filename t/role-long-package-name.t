@@ -7,15 +7,15 @@ use Test::More;
 # And, Moo uses string eval.
 {
     package R::AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA;
-    use Role::Tiny;
+    use Role::NotSoTiny;
     package R::BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB;
-    use Role::Tiny;
+    use Role::NotSoTiny;
     package R::CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC;
-    use Role::Tiny;
+    use Role::NotSoTiny;
     package R::DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD;
-    use Role::Tiny;
+    use Role::NotSoTiny;
     package R::EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE;
-    use Role::Tiny;
+    use Role::NotSoTiny;
 }
 
 # test various lengths so abbreviation cuts off double colon
@@ -40,7 +40,7 @@ for my $pack (qw(
     R::DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
     R::EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
   )) {
-    Role::Tiny->apply_roles_to_object($o, $_);
+    Role::NotSoTiny->apply_roles_to_object($o, $_);
   }
 
   my $pkg = ref $o;
