@@ -56,7 +56,7 @@ to build functionality such as a programmatic role creator.
 
 L<Role::NotSoTiny::Creator> implements the following methods.
 
-=head2 make_role
+=head2 create_role
 
   Role::NotSoTiny::Creator->create_role('Some::Package', methods => \%methods);
 
