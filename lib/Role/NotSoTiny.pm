@@ -78,7 +78,7 @@ Role::NotSoTiny - Experiment with Role::Tiny / Role::NotSoTiny->make_role()
 
 This module is an experiment with L<Role::Tiny>.
 The change here is being a proposed as a patch to the original code.
-See L<>.
+See L<https://github.com/moose/Role-Tiny/pull/4>.
 
 =head1 METHODS
 
